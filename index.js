@@ -55,6 +55,11 @@ app.get('/', (req, res) => {
   res.redirect('/home');
 });
 
+// //for each blog post
+app.get('/lifestyle/:title', function (req, res) {
+    res.send('Blogpost template here!')
+  })
+
 const database = new Sequelize({
     dialect: 'sqlite',
     storage: './db.sqlite',
@@ -66,6 +71,16 @@ const Post = database.define('posts', {
     content: Sequelize.TEXT,
 });
 
+const blogPost = database.define('blogposts', {
+    title: Sequelize.STRING,
+    content: Sequelize.TEXT,
+    published: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+    },
+});
+
 epilogue.initialize({ app, sequelize: database });
 
 const PostResource = epilogue.resource({
@@ -73,14 +88,20 @@ const PostResource = epilogue.resource({
     endpoints: ['/posts', '/posts/:id'],
 });
 
+const blogPostResource = epilogue.resource({
+    model: blogPost,
+    endpoints: ['/blogposts', '/blogposts/:id'],
+});
+
+
 PostResource.all.auth(function (req, res, context) {
     return new Promise(function (resolve, reject) {
-        if (!req.isAuthenticated()) {
-            res.status(401).send({ message: "Unauthorized" });
-            resolve(context.stop);
-        } else {
+        // if (!req.isAuthenticated()) {
+        //     res.status(401).send({ message: "Unauthorized" });
+        //     resolve(context.stop);
+        // } else {
             resolve(context.continue);
-        }
+        // }
     })
 });
 

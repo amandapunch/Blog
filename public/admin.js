@@ -3,13 +3,13 @@ const e = React.createElement;
 
 const AppNav = () => (
    <nav class="navbar navbar-dark bg-dark">
-       <a class="navbar-brand" href="#">My Blog</a>
+       <a class="navbar-brand" href="#">My Blog!!</a>
        <a role="button" class="btn btn-outline-info navbar-btn" href="/logout">Logout</a>
    </nav>
 );
 
-const Card = ({ item, handleSubmit, handleEdit, handleDelete, handleCancel }) => {
-   const { title, content, editMode } = item;
+const Card = ({ item, handleSubmit, handleEdit, handleDelete, handleCancel, handlePublish }) => {
+   const { title, content, published, editMode } = item;
 
    if (editMode) {
        return (
@@ -25,6 +25,7 @@ const Card = ({ item, handleSubmit, handleEdit, handleDelete, handleCancel }) =>
                        </div>
                        <button type="button" class="btn btn-outline-secondary btn-sm" onClick={handleCancel}>Cancel</button>
                        <button type="submit" class="btn btn-info btn-sm ml-2">Save</button>
+                       <button type="submit" class="btn btn-info btn-sm ml-2" onClick={handlePublish}>Publish</button>
                    </form>
                </div>
            </div>
@@ -46,7 +47,10 @@ const Card = ({ item, handleSubmit, handleEdit, handleDelete, handleCancel }) =>
 class Admin extends React.Component {
    constructor(props) {
        super(props);
-       this.state = { data: [] };
+       this.state = { 
+           data: [],
+           isPublished: false,
+     };
    }
 
    componentDidMount() {
@@ -54,7 +58,7 @@ class Admin extends React.Component {
    }
 
    getPosts = async () => {
-       const response = await fetch('/posts');
+       const response = await fetch('/blogposts');
        const data = await response.json();
        data.forEach(item => item.editMode = false);
        this.setState({ data })
@@ -62,10 +66,13 @@ class Admin extends React.Component {
 
    addNewPost = () => {
        const data = this.state.data;
+       this.setState({isPublished: false})
+       console.log("Adding new post")
        data.unshift({
            editMode: true,
            title: "",
-           content: ""
+           content: "",
+           published: false,
        })
        this.setState({ data })
    }
@@ -73,6 +80,10 @@ class Admin extends React.Component {
    handleCancel = async () => {
        await this.getPosts();
    }
+
+   handlePublish = async () => {
+       await this.setState({ isPublished: true })
+}
 
    handleEdit = (postId) => {
        const data = this.state.data.map((item) => {
@@ -85,7 +96,7 @@ class Admin extends React.Component {
    }
 
    handleDelete = async (postId) => {
-       await fetch(`/posts/${postId}`, {
+       await fetch(`/blogposts/${postId}`, {
            method: 'DELETE',
            headers: {
                'content-type': 'application/json',
@@ -98,25 +109,27 @@ class Admin extends React.Component {
    handleSubmit = async (event) => {
        event.preventDefault();
        const data = new FormData(event.target);
-
+        console.log("Hello")
+        console.log(this.state.data)
+        console.log(data.get('published'))
        const body = JSON.stringify({
            title: data.get('title'),
            content: data.get('content'),
+           published: this.state.isPublished,
        });
-
        const headers = {
            'content-type': 'application/json',
            accept: 'application/json',
        };
 
        if (data.get('id')) {
-           await fetch(`/posts/${data.get('id')}`, {
+           await fetch(`/blogposts/${data.get('id')}`, {
                method: 'PUT',
                headers,
                body,
            });
        } else {
-           await fetch('/posts', {
+           await fetch('/blogposts', {
                method: 'POST',
                headers,
                body,
@@ -140,6 +153,7 @@ class Admin extends React.Component {
                                handleEdit={this.handleEdit.bind(this, item.id)}
                                handleDelete={this.handleDelete.bind(this, item.id)}
                                handleCancel={this.handleCancel}
+                               handlePublish={this.handlePublish}
                            />)
                    ) : (
                            <div class="card mt-5 col-sm">

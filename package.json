@@ -17,8 +17,9 @@
     "epilogue": "^0.7.1",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
-    "sequelize": "^4.42.0",
-    "sqlite3": "^4.0.4"
+    "rc": "^1.2.8",
+    "sequelize": "^4.44.3",
+    "sqlite3": "^4.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"
