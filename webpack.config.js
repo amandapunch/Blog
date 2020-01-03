@@ -1,56 +1,9 @@
-// const path = require('path')
-// const webpack = require('webpack')
-// const nodeExternals = require('webpack-node-externals')
-// const HtmlWebPackPlugin = require("html-webpack-plugin")
-// module.exports = {
-//   entry: {
-//     server: './src/server/server.js',
-//   },
-//   output: {
-//     path: path.join(__dirname, 'dist'),
-//     publicPath: '/',
-//     filename: '[name].js'
-//   },
-//   target: 'node',
-//   node: {
-//     // Need this when working with express, otherwise the build fails
-//     __dirname: false,   // if you don't put this is, __dirname
-//     __filename: false,  // and __filename return blank or /
-//   },
-//   externals: [nodeExternals()], // Need this to avoid error when working with Express
-//   module: {
-//     rules: [
-//       {
-//         // Transpiles ES6-8 into ES5
-//         test: /\.js$/,
-//         exclude: /node_modules/,
-//         use: {
-//           loader: "babel-loader"
-//         }
-//       },
-//       {
-//         // Loads the javacript into html template provided.
-//         // Entry point is set below in HtmlWebPackPlugin in Plugins 
-//         test: /\.html$/,
-//         use: [{loader: "html-loader"}]
-//       }
-//     ]
-//   },
-//   plugins: [
-//     new HtmlWebPackPlugin({
-//       template: "./src/home.html",
-//       filename: "./src/home.html",
-//       excludeChunks: [ 'server' ]
-//     })
-//   ]
-// }
-
 const path = require("path")
-const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
+
 module.exports = {
   entry: {
-    main: './src/home.js'
+    main: './src/index.js'
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -67,14 +20,12 @@ module.exports = {
         loader: "babel-loader",
       },
       {
-        // Loads the javacript into html template provided.
-        // Entry point is set below in HtmlWebPackPlugin in Plugins 
         test: /\.html$/,
         use: [
           {
             loader: "html-loader",
-            //options: { minimize: true }
-          }
+            options: { minimize: true }
+          },
         ]
       },
       {
@@ -84,14 +35,26 @@ module.exports = {
       {
        test: /\.(png|svg|jpg|gif)$/,
        use: ['file-loader']
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       }
     ]
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./src/home.html",
-      filename: "./src/home.html",
+      template: "./src/index.html",
+      filename: "./src/index.html",
       excludeChunks: [ 'server' ]
     })
-  ]
+  ],
+
+  resolve: {
+    extensions: ["*",".js", ".jsx", "json"],
+    alias: {
+      'components': path.resolve(__dirname, '/components')
+    }      
+},
+
 }

@@ -1,10 +1,10 @@
 'use strict';
-const e = React.createElement;
+import React, { Component } from 'react';
 
 const AppNav = () => (
-   <nav class="navbar navbar-dark bg-dark">
-       <a class="navbar-brand" href="#">My Blog!!</a>
-       <a role="button" class="btn btn-outline-info navbar-btn" href="/logout">Logout</a>
+   <nav className="navbar navbar-dark bg-dark">
+       <a className="navbar-brand" href="#">My Blog!!</a>
+       <a role="button" className="btn btn-outline-info navbar-btn" href="/logout">Logout</a>
    </nav>
 );
 
@@ -13,38 +13,38 @@ const Card = ({ item, handleSubmit, handleEdit, handleDelete, handleCancel, hand
 
    if (editMode) {
        return (
-           <div class="card mt-4" Style="width: 100%;">
-               <div class="card-body">
+           <div className="card mt-4" Style="width: 100%;">
+               <div className="card-body">
                    <form onSubmit={handleSubmit}>
                        <input type="hidden" name="id" value={item.id} />
-                       <div class="input-group input-group-sm mb-3">
-                           <input type="text" name="title" class="form-control" placeholder="Title" defaultValue={title} />
+                       <div className="input-group input-group-sm mb-3">
+                           <input type="text" name="title" className="form-control" placeholder="Title" defaultValue={title} />
                        </div>
-                       <div class="input-group input-group-sm mb-3">
-                           <textarea name="content" class="form-control" placeholder="Content" defaultValue={content}></textarea>
+                       <div className="input-group input-group-sm mb-3">
+                           <textarea name="content" className="form-control" placeholder="Content" defaultValue={content}></textarea>
                        </div>
-                       <button type="button" class="btn btn-outline-secondary btn-sm" onClick={handleCancel}>Cancel</button>
-                       <button type="submit" class="btn btn-info btn-sm ml-2">Save</button>
-                       <button type="submit" class="btn btn-info btn-sm ml-2" onClick={handlePublish}>Publish</button>
+                       <button type="button" className="btn btn-outline-secondary btn-sm" onClick={handleCancel}>Cancel</button>
+                       <button type="submit" className="btn btn-info btn-sm ml-2">Save</button>
+                       <button type="submit" className="btn btn-info btn-sm ml-2" onClick={handlePublish}>Publish</button>
                    </form>
                </div>
            </div>
        )
    } else {
        return (
-           <div class="card mt-4" Style="width: 100%;">
-               <div class="card-body">
-                   <h5 class="card-title">{title || "No Title"}</h5>
-                   <p class="card-text">{content || "No Content"}</p>
-                   <button type="button" class="btn btn-outline-danger btn-sm" onClick={handleDelete}>Delete</button>
-                   <button type="submit" class="btn btn-info btn-sm ml-2" onClick={handleEdit}>Edit</button>
+           <div className="card mt-4" Style="width: 100%;">
+               <div className="card-body">
+                   <h5 className="card-title">{title || "No Title"}</h5>
+                   <p className="card-text">{content || "No Content"}</p>
+                   <button type="button" className="btn btn-outline-danger btn-sm" onClick={handleDelete}>Delete</button>
+                   <button type="submit" className="btn btn-info btn-sm ml-2" onClick={handleEdit}>Edit</button>
                </div>
            </div>
        )
    }
 }
 
-class Admin extends React.Component {
+class Admin extends Component {
    constructor(props) {
        super(props);
        this.state = { 
@@ -141,8 +141,9 @@ class Admin extends React.Component {
    render() {
        return (
            <div>
+               <div><p>Admin Page</p></div>
                <AppNav />
-               <button type="button" class="mt-4 mb-2 btn btn-primary btn-sm float-right" onClick={this.addNewPost}>
+               <button type="button" className="mt-4 mb-2 btn btn-primary btn-sm float-right" onClick={this.addNewPost}>
                    Add New Post
                </button>
                {
@@ -156,8 +157,8 @@ class Admin extends React.Component {
                                handlePublish={this.handlePublish}
                            />)
                    ) : (
-                           <div class="card mt-5 col-sm">
-                               <div class="card-body">You don't have any posts. Use the "Add New Post" button to add some new posts!</div>
+                           <div className="card mt-5 col-sm">
+                               <div className="card-body">You don't have any posts. Use the "Add New Post" button to add some new posts!</div>
                            </div>
                        )
                }
@@ -166,5 +167,4 @@ class Admin extends React.Component {
    }
 }
 
-const domContainer = document.querySelector('#root');
-ReactDOM.render(e(Admin), domContainer);
+export default Admin;

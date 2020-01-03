@@ -1,6 +1,4 @@
-const e = React.createElement;
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -28,7 +26,7 @@ const Card = ({ item }) => {
         )
  }
 
-class Home extends React.Component {
+ class Home extends Component {
    constructor(props) {
        super(props);
        this.state = { posts: [] };
@@ -39,7 +37,9 @@ class Home extends React.Component {
 }
 
    getPosts = async () => {
-    const response = await fetch('/blogposts');
+    console.log("Hello")
+    const response = fetch('/blogposts');
+    console.log(response)
     const data = await response.json();
     const publishedPosts = [];
     console.log(data);
@@ -52,7 +52,7 @@ class Home extends React.Component {
     }
         );
         console.log(publishedPosts)
-    await this.setState({ posts: publishedPosts })
+    this.setState({ posts: publishedPosts })
     console.log(this.state.posts)
 }
 
@@ -110,5 +110,4 @@ class Home extends React.Component {
    }
 }
 
-const domContainer = document.querySelector('#root');
-ReactDOM.render(e(Home), domContainer);
+export default Home;

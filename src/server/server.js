@@ -1,25 +1,19 @@
 import path from 'path'
 import express from 'express'
-// import react from 'react'
-// import ReactDOM from 'react-dom'
+
 require('dotenv').config();
-// const express = require('express');
-// const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const { ExpressOIDC } = require('@okta/oidc-middleware');
 const Sequelize = require('sequelize');
 const epilogue = require('epilogue'), ForbiddenError = epilogue.Errors.ForbiddenError;
-// const app = express();
-// const port = 3000;
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 3000
 
 const app = express(),
             DIST_DIR = __dirname,
-            HTML_FILE = path.join(DIST_DIR, '/src/home.html')
+            HTML_FILE = path.join(DIST_DIR, '/src/index.html')
 app.use(express.static(DIST_DIR))
-
 app.get('*', (req, res) => {
     res.sendFile(HTML_FILE)
 })
@@ -50,13 +44,13 @@ app.use(oidc.router);
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'src')));
 app.get('/home', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/home.html'));
+    res.sendFile(path.join(__dirname, './home.html'));
  });
  
  app.get('/admin', oidc.ensureAuthenticated(), (req, res) => {
-    res.sendFile(path.join(__dirname, './public/admin.html'));
+    res.sendFile(path.join(__dirname, './admin.html'));
  });
 
 app.get('/logout', (req, res) => {
@@ -94,6 +88,11 @@ const blogPost = database.define('blogposts', {
     },
 });
 
+const test = database.define('test', {
+    title: Sequelize.STRING,
+    content: Sequelize.TEXT,
+});
+
 epilogue.initialize({ app, sequelize: database });
 
 const PostResource = epilogue.resource({
@@ -129,7 +128,3 @@ oidc.on('error', err => {
     console.log("oidc error: ", err);
 });
 
-// ReactDOM.render(
-//     <div>Hello</div>,
-//     document.getElementById("root")
-// )
