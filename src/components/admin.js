@@ -67,7 +67,6 @@ class Admin extends Component {
    addNewPost = () => {
        const data = this.state.data;
        this.setState({isPublished: false})
-       console.log("Adding new post")
        data.unshift({
            editMode: true,
            title: "",
@@ -109,9 +108,6 @@ class Admin extends Component {
    handleSubmit = async (event) => {
        event.preventDefault();
        const data = new FormData(event.target);
-        console.log("Hello")
-        console.log(this.state.data)
-        console.log(data.get('published'))
        const body = JSON.stringify({
            title: data.get('title'),
            content: data.get('content'),
@@ -121,7 +117,7 @@ class Admin extends Component {
            'content-type': 'application/json',
            accept: 'application/json',
        };
-
+       console.log("put")
        if (data.get('id')) {
            await fetch(`/blogposts/${data.get('id')}`, {
                method: 'PUT',

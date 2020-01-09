@@ -14,7 +14,7 @@ const app = express(),
             DIST_DIR = __dirname,
             HTML_FILE = path.join(DIST_DIR, '/src/index.html')
 app.use(express.static(DIST_DIR))
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(HTML_FILE)
 })
 // session support is required to use ExpressOIDC
@@ -45,12 +45,20 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'src')));
-app.get('/home', (req, res) => {
-    res.sendFile(path.join(__dirname, './home.html'));
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './src/index.html'));
  });
  
  app.get('/admin', oidc.ensureAuthenticated(), (req, res) => {
-    res.sendFile(path.join(__dirname, './admin.html'));
+    res.sendFile(path.join(__dirname, './src/index.html'));
+ });
+
+ app.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, './src/index.html'));
+ });
+
+ app.get('/posts', (req, res) => {
+    res.sendFile(path.join(__dirname, './src/index.html'));
  });
 
 app.get('/logout', (req, res) => {
@@ -61,6 +69,10 @@ console.log("redirect");
 app.get('/', (req, res) => {
   res.redirect('/home');
 });
+
+app.get('/about', (req, res) => {
+    res.redirect('/about');
+  });
 
 // //for each blog post
 app.get('/lifestyle/:title', function (req, res) {
@@ -73,11 +85,6 @@ const database = new Sequelize({
     operatorsAliases: false,
 });
 
-const Post = database.define('posts', {
-    title: Sequelize.STRING,
-    content: Sequelize.TEXT,
-});
-
 const blogPost = database.define('blogposts', {
     title: Sequelize.STRING,
     content: Sequelize.TEXT,
@@ -88,33 +95,19 @@ const blogPost = database.define('blogposts', {
     },
 });
 
-const test = database.define('test', {
-    title: Sequelize.STRING,
-    content: Sequelize.TEXT,
-});
+const Image = database.define('image', {
+    type: Sequelize.STRING,
+    name: Sequelize.STRING,
+    data: {
+    type: Sequelize.BLOB('long')
+    }
+  });
 
 epilogue.initialize({ app, sequelize: database });
-
-const PostResource = epilogue.resource({
-    model: Post,
-    endpoints: ['/posts', '/posts/:id'],
-});
 
 const blogPostResource = epilogue.resource({
     model: blogPost,
     endpoints: ['/blogposts', '/blogposts/:id'],
-});
-
-
-PostResource.all.auth(function (req, res, context) {
-    return new Promise(function (resolve, reject) {
-        // if (!req.isAuthenticated()) {
-        //     res.status(401).send({ message: "Unauthorized" });
-        //     resolve(context.stop);
-        // } else {
-            resolve(context.continue);
-        // }
-    })
 });
 
 database.sync().then(() => {

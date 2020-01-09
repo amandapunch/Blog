@@ -2,102 +2,149 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { Accordion, AccordionPanel, Box } from 'grommet';
 import { Carousel, Image } from 'grommet';
-
-const AppNav = () => (
-   <nav className="navbar navbar-dark bg-dark">
-       <a className="navbar-brand" href="#">Bab Blog</a>
-       {/* <a role="button" class="btn btn-outline-info navbar-btn" href="/login">Login</a> */}
-       <Button  variant="contained">Login</Button>
-   </nav>
-);
-
-const Card = ({ item }) => {
-    const { title, content} = item;
-
-        return (
-            <div className="card mt-4" Style="width: 100%;">
-                <div className="card-body">
-                    <h5 className="card-title">{title || "No Title"}</h5>
-                    <p className="card-text">{content || "No Content"}</p>
-                </div>
-            </div>
-        )
- }
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import Dialog from '@material-ui/core/Dialog';
+import CloseIcon from '@material-ui/icons/Close'
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import LandingImage from './stars.jpg'
+import { Box, Stack, Paragraph, Text } from 'grommet';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
+import {
+  withRouter
+} from 'react-router-dom'
 
  class Home extends Component {
    constructor(props) {
        super(props);
-       this.state = { posts: [] };
+       this.state = { 
+         posts: [], 
+         modalOpen: false,
+        };
    }
 
    componentDidMount() {
     this.getPosts();
 }
 
-   getPosts = async () => {
-    console.log("Hello")
-    const response = fetch('/blogposts');
-    console.log(response)
-    const data = await response.json();
-    const publishedPosts = [];
-    console.log(data);
-    data.forEach(item => 
-        {
-            console.log(item.published)
-            if(item.published == true){
-            publishedPosts.push(item)
-        }
+getPosts = async () => {
+  const response = await fetch('/blogposts');
+  const posts = await response.json();
+  const publishedPosts = [];
+  posts.forEach(item => 
+    {
+        if(item.published == true){
+        publishedPosts.push(item)
     }
-        );
-        console.log(publishedPosts)
-    this.setState({ posts: publishedPosts })
-    console.log(this.state.posts)
+});
+  this.setState({ posts: publishedPosts })
+
 }
+
+handleClickOpen = () => {
+  this.setState({modalOpen : true});
+};
+
+handleClose = () => {
+  this.setState({modalOpen : false});
+};
+
+handleRedirect = (url) => {
+  this.props.history.push('/' + url)
+};
 
 
    render() {
        return (
            <div>
-               
-               <Grid>
-              <Grid item xs={12}>
-            <Paper>
-            Bab's Blog!
-            </Paper>
-            </Grid>
-            <Grid item xs={12}>
-            <Button variant="contained">Login!</Button>  
-            </Grid>
-            </Grid>
-            <div>
-            <Box fill='horizontal'>
-      <Accordion animate={true} multiple={true} margin='small'>
-        <AccordionPanel label='Panel 1'>
-          <Box background='light-1'>Panel 1 content</Box>
-        </AccordionPanel>
-        <AccordionPanel label='Panel 2'>
-          <Box height='small' background='light-1'>Panel 2 content</Box>
-        </AccordionPanel>
-        <AccordionPanel label='Panel 3'>
-          <Box height='medium' background='light-1'>Panel 3 content</Box>
-        </AccordionPanel>
-      </Accordion>
-    </Box>
-    <Box height="small" width="medium" overflow="hidden">
-  <Carousel fill>
-  <Image fit="cover" src="Breakwater.jpg" />
-    <Image fit="cover" src="//v2.grommet.io/assets/Wilderpeople_Ricky.jpg" />
-    <Image fit="cover" src="//v2.grommet.io/assets/IMG_4245.jpg" />
-    <Image fit="cover" src="//v2.grommet.io/assets/IMG_4210.jpg" />
-  </Carousel>
-</Box>
-            </div>
+      <AppBar position="absolute" style={{ background: 'transparent', boxShadow: 'none'}}>
+        <Toolbar>
+          <IconButton edge="start" color="inherit" aria-label="menu" onClick={this.handleClickOpen}>
+            <MenuIcon>
+            </MenuIcon>
+          </IconButton>
+          <Button color="inherit" onClick={() => this.handleRedirect('posts')}>Read</Button>
+          <Button color="inherit" onClick={() => this.handleRedirect('about')}>About</Button>
+          <SearchIcon/>
+        </Toolbar>
+      </AppBar>
+
+      <Dialog fullScreen open={this.state.modalOpen} onClose={this.handleClose}>
+        <AppBar position="absolute" >
+          <Toolbar>
+            <IconButton edge="start" color="inherit" onClick={this.handleClose} aria-label="close">
+              <CloseIcon />
+            </IconButton>
+            <Typography variant="h6">
+              Introspection
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      <DialogContent style={{backgroundColor: "#a39eff"}}>
+      </DialogContent>
+      <DialogActions>
+          <Button color="primary">
+            Read
+          </Button>
+        </DialogActions>
+      </Dialog>
+      
+      <Stack anchor='center'>
+      <Image fit='cover' fill='true' src={LandingImage} />
+        <p style={{color: "white", paddingBottom: "400px"}}>
+          <span style={{fontSize: "100px"}}>Introspection<br/></span>
+          <span style={{fontSize: "20px"}}>noun<br/></span>
+          <span style={{fontSize: "25px"}}>The examination or observation of one's own mental and emotional processes.</span>
+          </p>
+    </Stack>           
                {
                this.state.posts.length > 0 ? (
-                       this.state.posts.map(item =>
-                           <Card item={item}/>
+                       this.state.posts.map(post =>
+                      <div style={{backgroundColor: "#dbe1ff"}}>
+                        <Grid container spacing={3}>
+                        <Grid item xs={6}>
+                        <Card>
+                        <CardHeader
+                          title={post.title}
+                        />
+                        <CardMedia
+                          image="/static/images/cards/paella.jpg"
+                          title={post.title}
+                        />
+                        <CardContent>
+                          <Typography variant="body2" color="textSecondary" component="p">
+                            {post.content}
+                          </Typography>
+                        </CardContent>
+                      </Card>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Card>
+                        <CardHeader
+                          title={post.title}
+                        />
+                        <CardMedia
+                          image={LandingImage}
+                          title={post.title}
+                        />
+                        <CardContent>
+                          <Typography variant="body2" color="textSecondary" component="p">
+                            {post.content}
+                          </Typography>
+                        </CardContent>
+                      </Card>
+                      </Grid>
+                      </Grid>
+                      </div>
                            )
                    ) : (
                            <div className="card mt-5 col-sm">
