@@ -72,6 +72,7 @@ handleRedirect = (url) => {
             <MenuIcon>
             </MenuIcon>
           </IconButton>
+          <Button color="inherit" onClick={() => this.handleRedirect('')}>Home</Button>
           <Button color="inherit" onClick={() => this.handleRedirect('posts')}>Read</Button>
           <Button color="inherit" onClick={() => this.handleRedirect('about')}>About</Button>
           <SearchIcon/>
@@ -153,6 +154,7 @@ handleRedirect = (url) => {
                        )
                }
            </div>
+           
        );
    }
 }

@@ -31,8 +31,8 @@ class About extends Component {
         this.setState({modalOpen : false});
       };
       
-      handleRedirect = () => {
-        this.props.history.push('/')
+      handleRedirect = (url) => {
+        this.props.history.push('/' + url)
       };
 
     render() {
@@ -45,8 +45,9 @@ class About extends Component {
             <MenuIcon>
             </MenuIcon>
           </IconButton>
-          <Button color="inherit">Read</Button>
-          <Button color="inherit" onClick={this.handleRedirect}>About</Button>
+          <Button color="inherit" onClick={() => this.handleRedirect('')}>Home</Button>
+          <Button color="inherit" onClick={() => this.handleRedirect('posts')}>Read</Button>
+          <Button color="inherit" onClick={() => this.handleRedirect('about')}>About</Button>
           <SearchIcon/>
         </Toolbar>
       </AppBar>

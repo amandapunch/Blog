@@ -87388,8 +87388,8 @@ function (_Component) {
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "handleRedirect", function () {
-      _this.props.history.push('/');
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "handleRedirect", function (url) {
+      _this.props.history.push('/' + url);
     });
 
     _this.state = {
@@ -87401,6 +87401,8 @@ function (_Component) {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(About, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("p", {
         style: {
           color: "white"
@@ -87417,10 +87419,20 @@ function (_Component) {
         "aria-label": "menu",
         onClick: this.handleClickOpen
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_13___default.a, null)), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
-        color: "inherit"
+        color: "inherit",
+        onClick: function onClick() {
+          return _this2.handleRedirect('');
+        }
+      }, "Home"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        color: "inherit",
+        onClick: function onClick() {
+          return _this2.handleRedirect('posts');
+        }
       }, "Read"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
         color: "inherit",
-        onClick: this.handleRedirect
+        onClick: function onClick() {
+          return _this2.handleRedirect('about');
+        }
       }, "About"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_material_ui_icons_Search__WEBPACK_IMPORTED_MODULE_14___default.a, null))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_material_ui_core_Dialog__WEBPACK_IMPORTED_MODULE_15__["default"], {
         fullScreen: true,
         open: this.state.modalOpen,
@@ -87988,6 +88000,11 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_17___default.a, null)), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
         color: "inherit",
         onClick: function onClick() {
+          return _this2.handleRedirect('');
+        }
+      }, "Home"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        color: "inherit",
+        onClick: function onClick() {
           return _this2.handleRedirect('posts');
         }
       }, "Read"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
@@ -88220,8 +88237,8 @@ function (_Component) {
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "handleRedirect", function () {
-      _this.props.history.push('/');
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "handleRedirect", function (url) {
+      _this.props.history.push('/' + url);
     });
 
     _this.state = {
@@ -88253,6 +88270,11 @@ function (_Component) {
         "aria-label": "menu",
         onClick: this.handleClickOpen
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_14___default.a, null)), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        color: "inherit",
+        onClick: function onClick() {
+          return _this2.handleRedirect('');
+        }
+      }, "Home"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
         color: "inherit",
         onClick: function onClick() {
           return _this2.handleRedirect('posts');
