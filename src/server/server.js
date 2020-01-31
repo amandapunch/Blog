@@ -38,7 +38,6 @@ const oidc = new ExpressOIDC({
     }
 });
 
-// ExpressOIDC will attach handlers for the /login and /authorization-code/callback routes
 app.use(oidc.router);
 
 app.use(cors());
@@ -65,7 +64,6 @@ app.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/home');
 });
-console.log("redirect");
 app.get('/', (req, res) => {
   res.redirect('/home');
 });
@@ -73,11 +71,6 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
     res.redirect('/about');
   });
-
-// //for each blog post
-app.get('/lifestyle/:title', function (req, res) {
-    res.send('Blogpost template here!')
-  })
 
 const database = new Sequelize({
     dialect: 'sqlite',
@@ -94,14 +87,6 @@ const blogPost = database.define('blogposts', {
         defaultValue: false,
     },
 });
-
-const Image = database.define('image', {
-    type: Sequelize.STRING,
-    name: Sequelize.STRING,
-    data: {
-    type: Sequelize.BLOB('long')
-    }
-  });
 
 epilogue.initialize({ app, sequelize: database });
 

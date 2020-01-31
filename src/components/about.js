@@ -6,7 +6,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Close'
 import DialogContent from '@material-ui/core/DialogContent';
@@ -23,7 +22,6 @@ class About extends Component {
     }
 
     handleClickOpen = () => {
-        console.log("Opening")
         this.setState({modalOpen : true});
       };
       
@@ -38,7 +36,6 @@ class About extends Component {
     render() {
         return (
             <div>
-    <p style={{color: "white"}}>About</p>
     <AppBar position="absolute" style={{ background: 'transparent', boxShadow: 'none'}}>
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="menu" onClick={this.handleClickOpen}>
@@ -48,7 +45,6 @@ class About extends Component {
           <Button color="inherit" onClick={() => this.handleRedirect('')}>Home</Button>
           <Button color="inherit" onClick={() => this.handleRedirect('posts')}>Read</Button>
           <Button color="inherit" onClick={() => this.handleRedirect('about')}>About</Button>
-          <SearchIcon/>
         </Toolbar>
       </AppBar>
       <Dialog fullScreen open={this.state.modalOpen} onClose={this.handleClose}>

@@ -6,7 +6,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Close'
 import DialogContent from '@material-ui/core/DialogContent';
@@ -16,6 +15,7 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
+import Divider from '@material-ui/core/Divider';
 import {
   withRouter
 } from 'react-router-dom'
@@ -25,6 +25,8 @@ class Posts extends Component {
         this.state = { 
             modalOpen: false,
             posts: [],
+            leftPosts: [],
+            rightPosts: []
       };
     }
 
@@ -43,7 +45,10 @@ class Posts extends Component {
           }
       });
         this.setState({ posts: publishedPosts })
-      
+        const rPosts = publishedPosts.filter((post, index) => index % 2 )
+        const lPosts = publishedPosts.filter((post, index) => !(index % 2) )
+        this.setState({ leftPosts: lPosts })
+        this.setState({ rightPosts: rPosts })
       }
 
     handleClickOpen = () => {
@@ -70,7 +75,6 @@ class Posts extends Component {
                 <Button color="inherit" onClick={() => this.handleRedirect('')}>Home</Button>
                 <Button color="inherit" onClick={() => this.handleRedirect('posts')}>Read</Button>
                 <Button color="inherit" onClick={() => this.handleRedirect('about')}>About</Button>
-                <SearchIcon/>
               </Toolbar>
             </AppBar>
       
@@ -93,51 +97,61 @@ class Posts extends Component {
                 </Button>
               </DialogActions>
             </Dialog>
-                     {
-                     this.state.posts.length > 0 ? (
-                             this.state.posts.map(post =>
-                            <div style={{paddingTop: "100px"}}>
-                              <Grid container spacing={3}>
-                              <Grid item xs={6}>
-                              <Card>
-                              <CardHeader
-                                title={post.title}
-                              />
-                              <CardMedia
-                                image="/static/images/cards/paella.jpg"
-                                title={post.title}
-                              />
-                              <CardContent>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                  {post.content}
-                                </Typography>
-                              </CardContent>
-                            </Card>
-                            </Grid>
-                            <Grid item xs={6}>
-                              <Card>
-                              <CardHeader
-                                title={post.title}
-                              />
-                              <CardMedia
-                                title={post.title}
-                              />
-                              <CardContent>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                  {post.content}
-                                </Typography>
-                              </CardContent>
-                            </Card>
-                            </Grid>
-                            </Grid>
-                            </div>
-                                 )
-                         ) : (
-                                 <div className="card mt-5 col-sm">
-                                     <div className="card-body">No posts available!</div>
-                                 </div>
-                             )
-                     }
+            {
+               (this.state.leftPosts.length > 0) && (this.state.rightPosts.length > 0) ? (
+                      <div style={{backgroundColor: "black"}}>
+                        <Grid container spacing={3} style={{paddingTop: "100px"}}>
+                        <Grid item xs={6}>
+                       { 
+                       this.state.leftPosts.map(post =>
+                        <div style={{paddingTop: "20px", paddingBottom: "20px"}}>
+                        <Card variant="outlined" square>
+                        <CardHeader
+                          title={post.title}
+                        />
+                        <CardMedia
+                          title={post.title}
+                        />
+                        <Divider variant="middle"/>
+                        <CardContent>
+                          <Typography variant="body2" color="textSecondary" component="p">
+                            {post.content}
+                          </Typography>
+                        </CardContent>
+                      </Card>
+                      </div>
+                      )}
+                      </Grid>
+                    
+                      <Grid item xs={6}>
+                      { this.state.rightPosts.map(post =>
+                      <div style={{paddingTop: "20px", paddingBottom: "20px"}}>
+                        <Card variant="outlined" square>
+                        <CardHeader
+                          title={post.title}
+                        />
+                        <CardMedia
+                          title={post.title}
+                        />
+                        <Divider variant="middle"/>
+                        <CardContent>
+                          <Typography variant="body2" color="textSecondary" component="p">
+                            {post.content}
+                          </Typography>
+                        </CardContent>
+                      </Card>
+                      </div>
+                        )}
+                      </Grid>
+                      </Grid>
+                      </div>
+                           
+                   ) : (
+                           <div className="card mt-5 col-sm">
+                               <div className="card-body">No posts available!</div>
+                           </div>
+                       )
+               }
                  </div>
         );
     }

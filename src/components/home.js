@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { Carousel, Image } from 'grommet';
+import {Image} from 'grommet';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Close'
 import Card from '@material-ui/core/Card';
@@ -16,9 +15,10 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import LandingImage from './stars.jpg'
-import { Box, Stack, Paragraph, Text } from 'grommet';
+import {Stack} from 'grommet';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
+import Divider from '@material-ui/core/Divider';
 import {
   withRouter
 } from 'react-router-dom'
@@ -29,6 +29,8 @@ import {
        this.state = { 
          posts: [], 
          modalOpen: false,
+         leftPosts: [],
+         rightPosts: []
         };
    }
 
@@ -47,7 +49,10 @@ getPosts = async () => {
     }
 });
   this.setState({ posts: publishedPosts })
-
+  const rPosts = publishedPosts.filter((post, index) => index % 2 )
+  const lPosts = publishedPosts.filter((post, index) => !(index % 2) )
+  this.setState({ leftPosts: lPosts })
+  this.setState({ rightPosts: rPosts })
 }
 
 handleClickOpen = () => {
@@ -75,7 +80,6 @@ handleRedirect = (url) => {
           <Button color="inherit" onClick={() => this.handleRedirect('')}>Home</Button>
           <Button color="inherit" onClick={() => this.handleRedirect('posts')}>Read</Button>
           <Button color="inherit" onClick={() => this.handleRedirect('about')}>About</Button>
-          <SearchIcon/>
         </Toolbar>
       </AppBar>
 
@@ -106,19 +110,21 @@ handleRedirect = (url) => {
           <span style={{fontSize: "20px"}}>noun<br/></span>
           <span style={{fontSize: "25px"}}>The examination or observation of one's own mental and emotional processes.</span>
           </p>
-    </Stack>           
+    </Stack>  
                {
-               this.state.posts.length > 0 ? (
-                       this.state.posts.map(post =>
-                      <div style={{backgroundColor: "#dbe1ff"}}>
+               (this.state.leftPosts.length > 0) && (this.state.rightPosts.length > 0) ? (
+                      <div style={{backgroundColor: "black"}}>
                         <Grid container spacing={3}>
                         <Grid item xs={6}>
-                        <Card>
+                       { 
+                       this.state.leftPosts.map(post =>
+                        <div style={{paddingTop: "20px", paddingBottom: "20px"}}>
+                        <Card variant="outlined" square>
                         <CardHeader
                           title={post.title}
                         />
+                        <Divider variant="middle"/>
                         <CardMedia
-                          image="/static/images/cards/paella.jpg"
                           title={post.title}
                         />
                         <CardContent>
@@ -127,26 +133,33 @@ handleRedirect = (url) => {
                           </Typography>
                         </CardContent>
                       </Card>
+                      </div>
+                      )}
                       </Grid>
+                    
                       <Grid item xs={6}>
-                        <Card>
+                      { this.state.rightPosts.map(post =>
+                      <div style={{paddingTop: "20px", paddingBottom: "20px"}}>
+                        <Card variant="outlined" square>
                         <CardHeader
                           title={post.title}
                         />
                         <CardMedia
-                          image={LandingImage}
                           title={post.title}
                         />
+                        <Divider variant="middle"/>
                         <CardContent>
                           <Typography variant="body2" color="textSecondary" component="p">
                             {post.content}
                           </Typography>
                         </CardContent>
                       </Card>
+                      </div>
+                        )}
                       </Grid>
                       </Grid>
                       </div>
-                           )
+                           
                    ) : (
                            <div className="card mt-5 col-sm">
                                <div className="card-body">No posts available!</div>
