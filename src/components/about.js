@@ -45,6 +45,7 @@ class About extends Component {
           <Button color="inherit" onClick={() => this.handleRedirect('')}>Home</Button>
           <Button color="inherit" onClick={() => this.handleRedirect('posts')}>Read</Button>
           <Button color="inherit" onClick={() => this.handleRedirect('about')}>About</Button>
+          <Button color="inherit" onClick={() => this.handleRedirect('admin')}>Login</Button>
         </Toolbar>
       </AppBar>
       <Dialog fullScreen open={this.state.modalOpen} onClose={this.handleClose}>

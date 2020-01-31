@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import {Image} from 'grommet';
 import AppBar from '@material-ui/core/AppBar';
@@ -19,9 +18,6 @@ import {Stack} from 'grommet';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import Divider from '@material-ui/core/Divider';
-import {
-  withRouter
-} from 'react-router-dom'
 
  class Home extends Component {
    constructor(props) {
@@ -47,12 +43,17 @@ getPosts = async () => {
         if(item.published == true){
         publishedPosts.push(item)
     }
+  console.log(publishedPosts)
 });
   this.setState({ posts: publishedPosts })
   const rPosts = publishedPosts.filter((post, index) => index % 2 )
   const lPosts = publishedPosts.filter((post, index) => !(index % 2) )
+  console.log(rPosts)
+  console.log(lPosts)
   this.setState({ leftPosts: lPosts })
   this.setState({ rightPosts: rPosts })
+  console.log(this.state.rightPosts)
+  console.log(this.state.leftPosts)
 }
 
 handleClickOpen = () => {
@@ -80,6 +81,7 @@ handleRedirect = (url) => {
           <Button color="inherit" onClick={() => this.handleRedirect('')}>Home</Button>
           <Button color="inherit" onClick={() => this.handleRedirect('posts')}>Read</Button>
           <Button color="inherit" onClick={() => this.handleRedirect('about')}>About</Button>
+          <Button color="inherit" onClick={() => this.handleRedirect('admin')}>Login</Button>
         </Toolbar>
       </AppBar>
 
@@ -112,7 +114,7 @@ handleRedirect = (url) => {
           </p>
     </Stack>  
                {
-               (this.state.leftPosts.length > 0) && (this.state.rightPosts.length > 0) ? (
+               (this.state.leftPosts.length > 0) || (this.state.rightPosts.length > 0) ? (
                       <div style={{backgroundColor: "black"}}>
                         <Grid container spacing={3}>
                         <Grid item xs={6}>

@@ -75,6 +75,7 @@ class Posts extends Component {
                 <Button color="inherit" onClick={() => this.handleRedirect('')}>Home</Button>
                 <Button color="inherit" onClick={() => this.handleRedirect('posts')}>Read</Button>
                 <Button color="inherit" onClick={() => this.handleRedirect('about')}>About</Button>
+                <Button color="inherit" onClick={() => this.handleRedirect('admin')}>Login</Button>
               </Toolbar>
             </AppBar>
       
@@ -98,7 +99,7 @@ class Posts extends Component {
               </DialogActions>
             </Dialog>
             {
-               (this.state.leftPosts.length > 0) && (this.state.rightPosts.length > 0) ? (
+               (this.state.leftPosts.length > 0) || (this.state.rightPosts.length > 0) ? (
                       <div style={{backgroundColor: "black"}}>
                         <Grid container spacing={3} style={{paddingTop: "100px"}}>
                         <Grid item xs={6}>

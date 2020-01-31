@@ -15,23 +15,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
-const useStyles = makeStyles(theme => ({
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-    margin: {
-      margin: theme.spacing(1),
-    },
-    withoutLabel: {
-      marginTop: theme.spacing(3),
-    },
-    textField: {
-      width: 200,
-    },
-  }));
 
 class Admin extends Component {
    constructor(props) {
@@ -46,7 +30,7 @@ class Admin extends Component {
            title: "",
            content: "",
            postId: "",
-           editingPostId: "",
+           editingPost: {},
            newPost: false,
      };
    }
@@ -67,12 +51,20 @@ class Admin extends Component {
     this.props.history.push('/' + url)
   };
 
-  handleChangeContent = (e) => {
-    this.setState({content: e.target.value});
+  handleChangeContent = async (e) => {
+    await new Promise( ( resolve ) => 
+    this.setState( {
+     content: e.target.value,
+    }, resolve )
+)
   };
 
-  handleChangeTitle = (e) => {
-    this.setState({title: e.target.value});
+  handleChangeTitle = async (e) => {
+    await new Promise( ( resolve ) => 
+    this.setState( {
+     title: e.target.value,
+    }, resolve )
+)
   };
 
   getPosts = async () => {
@@ -97,32 +89,75 @@ class Admin extends Component {
        await this.getPosts();
    }
 
-   handlePublish = async () => {
-       this.setState({ isPublished: true })
-}
+   handleUnPublish = async (e) => {
+    await new Promise( ( resolve ) => 
+    this.setState( {
+     isPublished: false,
+    }, resolve )
+)
+    await new Promise( ( resolve ) => 
+    this.setState( {
+    title: this.state.editingPost.title,
+    }, resolve )
+    )
+    await new Promise( ( resolve ) => 
+    this.setState( {
+    content: this.state.editingPost.content,
+    }, resolve )
+    )
+    this.handleSubmit(e);
+    
+ }
 
-   handleEdit = (postId) => {
+   handlePublish = async (e) => {
+       await new Promise( ( resolve ) => 
+       this.setState( {
+        isPublished: true,
+       }, resolve )
+   )
+   await new Promise( ( resolve ) => 
+   this.setState( {
+   title: this.state.editingPost.title,
+   }, resolve )
+   )
+   await new Promise( ( resolve ) => 
+   this.setState( {
+   content: this.state.editingPost.content,
+   }, resolve )
+   )
+       this.handleSubmit(e);
+    }
+
+   handleEdit = async (post) => {
        this.setState({editMode: true})
        this.setState({newPost: false})
-       const post = this.state.posts.map((item) => {
-           if (item.id === postId) {
-               item.editMode = true;
-           }
-           return item;
-       });
-       this.setState({ editingPostId: postId });
+       await new Promise( ( resolve ) => 
+       this.setState( {
+        editingPost: post,
+       }, resolve )
+   )
+   await new Promise( ( resolve ) => 
+   this.setState( {
+   title: this.state.editingPost.title,
+   }, resolve )
+   )
+   await new Promise( ( resolve ) => 
+   this.setState( {
+   content: this.state.editingPost.content,
+   }, resolve )
+   )
    }
 
    handleDelete = async (postId) => {
-       await fetch(`/blogposts/${postId}`, {
-           method: 'DELETE',
-           headers: {
-               'content-type': 'application/json',
-               accept: 'application/json',
-           },
-       });
-       await this.getPosts();
-   }
+    await fetch(`/blogposts/${postId}`, {
+        method: 'DELETE',
+        headers: {
+            'content-type': 'application/json',
+            accept: 'application/json',
+        },
+    });
+    await this.getPosts();
+}
 
    handleSubmit = async (e) => {
        e.preventDefault();
@@ -135,7 +170,7 @@ class Admin extends Component {
            'content-type': 'application/json',
            accept: 'application/json',
        };
-       const id = this.state.editingPostId;
+       const id = this.state.editingPost.id;
        if (!this.state.newPost) {
            await fetch(`/blogposts/${id}`, {
                method: 'PUT',
@@ -149,11 +184,11 @@ class Admin extends Component {
                body,
            });
        }
+       await this.getPosts();
        this.setState({editMode: false});
-       this.setState({editingPostId: ""});
+       this.setState({editingPost: {}});
        this.setState({title: ""});
        this.setState({content: ""});
-       await this.getPosts();
    }
 
    render() {
@@ -218,6 +253,7 @@ class Admin extends Component {
                         rows="1"
                         fullWidth
                         onChange={this.handleChangeTitle}
+                        defaultValue={this.state.editingPost.title}
                       /> 
                     </div>
                     <TextField
@@ -227,10 +263,11 @@ class Admin extends Component {
                         rows="10"
                         fullWidth
                         onChange={this.handleChangeContent}
+                        defaultValue={this.state.editingPost.content}
                       />
                       <div style={{paddingTop: "10px"}}>
                       <Button onClick={this.handleSubmit}>Save</Button>
-                      <Button onClick={this.handlePublish}>Publish</Button>
+                      {this.state.editingPost.published ? (<Button onClick={this.handleUnPublish}>Unpublish</Button>):(<Button onClick={this.handlePublish}>Publish</Button>)}
                       <Button onClick={this.handleCancel}>Cancel</Button>
                       </div>
                     </CardContent>
@@ -258,7 +295,7 @@ class Admin extends Component {
                           <Typography variant="body2" color="textSecondary" component="p">
                             {post.content}
                           </Typography>
-                          <Button onClick={() => this.handleEdit(post.id)}>Edit</Button>
+                          <Button onClick={() => this.handleEdit(post)}>Edit</Button>
                           <Button onClick={() => this.handleDelete(post.id)}>Delete</Button> 
                         </CardContent>
                       </Card>
@@ -281,7 +318,7 @@ class Admin extends Component {
                           <Typography variant="body2" color="textSecondary" component="p">
                             {post.content}
                           </Typography>
-                          <Button onClick={() => this.handleEdit(post.id)}>Edit</Button>
+                          <Button onClick={() => this.handleEdit(post)}>Edit</Button>
                           <Button onClick={() => this.handleDelete(post.id)}>Delete</Button> 
                         </CardContent>
                       </Card>
