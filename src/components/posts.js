@@ -19,6 +19,8 @@ import Divider from '@material-ui/core/Divider';
 import {
   withRouter
 } from 'react-router-dom'
+
+
 class Posts extends Component {
     constructor(props) {
         super(props);
@@ -106,6 +108,7 @@ class Posts extends Component {
                        { 
                        this.state.leftPosts.map(post =>
                         <div style={{paddingTop: "20px", paddingBottom: "20px"}}>
+                           <Link to="/blogpost1">
                         <Card variant="outlined" square>
                         <CardHeader
                           title={post.title}
@@ -120,6 +123,7 @@ class Posts extends Component {
                           </Typography>
                         </CardContent>
                       </Card>
+                      </Link>
                       </div>
                       )}
                       </Grid>

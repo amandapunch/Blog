@@ -93817,6 +93817,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/admin */ "./src/components/admin.js");
 /* harmony import */ var _components_about__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/about */ "./src/components/about.js");
 /* harmony import */ var _components_posts__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/posts */ "./src/components/posts.js");
+/* harmony import */ var _components_blogpost__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/blogpost */ "./src/components/blogpost.js");
+
 
 
 
@@ -93857,6 +93859,9 @@ function (_React$Component) {
         }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Route"], {
           path: "/posts",
           component: _components_posts__WEBPACK_IMPORTED_MODULE_10__["default"]
+        }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Route"], {
+          path: "/post/:title/:id",
+          component: _components_blogpost__WEBPACK_IMPORTED_MODULE_11__["default"]
         })));
       };
 
@@ -94137,16 +94142,14 @@ function (_Component) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              console.log("changing content"); // this.setState({content: e.target.value});
-
-              _context.next = 3;
+              _context.next = 2;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(new Promise(function (resolve) {
                 return _this.setState({
                   content: e.target.value
                 }, resolve);
               }));
 
-            case 3:
+            case 2:
             case "end":
               return _context.stop();
           }
@@ -94159,16 +94162,14 @@ function (_Component) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              console.log("changing title"); // this.setState({title: e.target.value});
-
-              _context2.next = 3;
+              _context2.next = 2;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(new Promise(function (resolve) {
                 return _this.setState({
                   title: e.target.value
                 }, resolve);
               }));
 
-            case 3:
+            case 2:
             case "end":
               return _context2.stop();
           }
@@ -94259,38 +94260,33 @@ function (_Component) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              console.log("unpublishing");
-              _context5.next = 3;
+              _context5.next = 2;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(new Promise(function (resolve) {
                 return _this.setState({
                   isPublished: false
                 }, resolve);
               }));
 
-            case 3:
-              _context5.next = 5;
+            case 2:
+              _context5.next = 4;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(new Promise(function (resolve) {
                 return _this.setState({
                   title: _this.state.editingPost.title
                 }, resolve);
               }));
 
-            case 5:
-              _context5.next = 7;
+            case 4:
+              _context5.next = 6;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(new Promise(function (resolve) {
                 return _this.setState({
                   content: _this.state.editingPost.content
                 }, resolve);
               }));
 
-            case 7:
-              console.log(_this.state.editingPost);
-              console.log(_this.state.content);
-              console.log(_this.state.title);
-
+            case 6:
               _this.handleSubmit(e);
 
-            case 11:
+            case 7:
             case "end":
               return _context5.stop();
           }
@@ -94327,11 +94323,9 @@ function (_Component) {
               }));
 
             case 6:
-              console.log(_this.state.editingPost);
-
               _this.handleSubmit(e);
 
-            case 8:
+            case 7:
             case "end":
               return _context6.stop();
           }
@@ -94416,10 +94410,6 @@ function (_Component) {
           switch (_context9.prev = _context9.next) {
             case 0:
               e.preventDefault();
-              console.log("Submitting");
-              console.log(_this.state.isPublished);
-              console.log(_this.state.title);
-              console.log(_this.state.content);
               body = JSON.stringify({
                 title: _this.state.title,
                 content: _this.state.content,
@@ -94432,35 +94422,34 @@ function (_Component) {
               id = _this.state.editingPost.id;
 
               if (_this.state.newPost) {
-                _context9.next = 14;
+                _context9.next = 9;
                 break;
               }
 
-              console.log("editing old post");
-              _context9.next = 12;
+              _context9.next = 7;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(fetch("/blogposts/".concat(id), {
                 method: 'PUT',
                 headers: headers,
                 body: body
               }));
 
-            case 12:
-              _context9.next = 16;
+            case 7:
+              _context9.next = 11;
               break;
 
-            case 14:
-              _context9.next = 16;
+            case 9:
+              _context9.next = 11;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(fetch('/blogposts', {
                 method: 'POST',
                 headers: headers,
                 body: body
               }));
 
-            case 16:
-              _context9.next = 18;
+            case 11:
+              _context9.next = 13;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_this.getPosts());
 
-            case 18:
+            case 13:
               _this.setState({
                 editMode: false
               });
@@ -94477,7 +94466,7 @@ function (_Component) {
                 content: ""
               });
 
-            case 22:
+            case 17:
             case "end":
               return _context9.stop();
           }
@@ -94699,6 +94688,299 @@ function (_Component) {
 
 /***/ }),
 
+/***/ "./src/components/blogpost.js":
+/*!************************************!*\
+  !*** ./src/components/blogpost.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js");
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
+/* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js");
+/* harmony import */ var grommet__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! grommet */ "./node_modules/grommet/es6/index.js");
+/* harmony import */ var _material_ui_core_AppBar__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @material-ui/core/AppBar */ "./node_modules/@material-ui/core/esm/AppBar/index.js");
+/* harmony import */ var _material_ui_core_Toolbar__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @material-ui/core/Toolbar */ "./node_modules/@material-ui/core/esm/Toolbar/index.js");
+/* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
+/* harmony import */ var _material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js");
+/* harmony import */ var _material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @material-ui/icons/Menu */ "./node_modules/@material-ui/icons/Menu.js");
+/* harmony import */ var _material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _material_ui_core_Dialog__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @material-ui/core/Dialog */ "./node_modules/@material-ui/core/esm/Dialog/index.js");
+/* harmony import */ var _material_ui_icons_Close__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @material-ui/icons/Close */ "./node_modules/@material-ui/icons/Close.js");
+/* harmony import */ var _material_ui_icons_Close__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Close__WEBPACK_IMPORTED_MODULE_19__);
+/* harmony import */ var _material_ui_core_Card__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @material-ui/core/Card */ "./node_modules/@material-ui/core/esm/Card/index.js");
+/* harmony import */ var _material_ui_core_CardHeader__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @material-ui/core/CardHeader */ "./node_modules/@material-ui/core/esm/CardHeader/index.js");
+/* harmony import */ var _material_ui_core_CardMedia__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @material-ui/core/CardMedia */ "./node_modules/@material-ui/core/esm/CardMedia/index.js");
+/* harmony import */ var _material_ui_core_CardContent__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js");
+/* harmony import */ var _stars_jpg__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./stars.jpg */ "./src/components/stars.jpg");
+/* harmony import */ var _material_ui_core_DialogContent__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @material-ui/core/DialogContent */ "./node_modules/@material-ui/core/esm/DialogContent/index.js");
+/* harmony import */ var _material_ui_core_DialogActions__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @material-ui/core/DialogActions */ "./node_modules/@material-ui/core/esm/DialogActions/index.js");
+/* harmony import */ var _material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @material-ui/core/Divider */ "./node_modules/@material-ui/core/esm/Divider/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var BlogPost =
+/*#__PURE__*/
+function (_Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_7___default()(BlogPost, _Component);
+
+  function BlogPost(props) {
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, BlogPost);
+
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(BlogPost).call(this, props));
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6___default()(_this), "getPost", function _callee() {
+      var response, posts;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(fetch('/blogposts'));
+
+            case 2:
+              response = _context.sent;
+              _context.next = 5;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(response.json());
+
+            case 5:
+              posts = _context.sent;
+              posts.forEach(function (item) {
+                if (item.id == _this.props.match.params.id) {
+                  console.log("found post");
+                  console.log(item);
+                  console.log(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(item));
+
+                  _this.setState({
+                    post: item
+                  });
+                }
+              });
+
+            case 7:
+            case "end":
+              return _context.stop();
+          }
+        }
+      });
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6___default()(_this), "getPosts", function _callee2() {
+      var response, posts, publishedPosts, rPosts, lPosts;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(fetch('/blogposts'));
+
+            case 2:
+              response = _context2.sent;
+              _context2.next = 5;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(response.json());
+
+            case 5:
+              posts = _context2.sent;
+              publishedPosts = [];
+              posts.forEach(function (item) {
+                if (item.published == true) {
+                  publishedPosts.push(item);
+                }
+              });
+
+              _this.setState({
+                posts: publishedPosts
+              });
+
+              rPosts = publishedPosts.filter(function (post, index) {
+                return index % 2;
+              });
+              lPosts = publishedPosts.filter(function (post, index) {
+                return !(index % 2);
+              });
+
+              _this.setState({
+                leftPosts: lPosts
+              });
+
+              _this.setState({
+                rightPosts: rPosts
+              });
+
+            case 13:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      });
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6___default()(_this), "handleClickOpen", function () {
+      _this.setState({
+        modalOpen: true
+      });
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6___default()(_this), "handleClose", function () {
+      _this.setState({
+        modalOpen: false
+      });
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_8___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6___default()(_this), "handleRedirect", function (url) {
+      _this.props.history.push('/' + url);
+    });
+
+    _this.state = {
+      post: {},
+      modalOpen: false,
+      leftPosts: [],
+      rightPosts: []
+    };
+    return _this;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(BlogPost, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.getPost();
+      console.log(this.props.match.params.id);
+      console.log(this.state.post);
+      console.log(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(this.props.match.params));
+      console.log(this.state.leftPosts);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_AppBar__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        position: "absolute",
+        style: {
+          background: 'transparent',
+          boxShadow: 'none'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_Toolbar__WEBPACK_IMPORTED_MODULE_14__["default"], null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_16__["default"], {
+        edge: "start",
+        color: "inherit",
+        "aria-label": "menu",
+        onClick: this.handleClickOpen
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_17___default.a, null)), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        color: "inherit",
+        onClick: function onClick() {
+          return _this2.handleRedirect('');
+        }
+      }, "Home"), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        color: "inherit",
+        onClick: function onClick() {
+          return _this2.handleRedirect('posts');
+        }
+      }, "Read"), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        color: "inherit",
+        onClick: function onClick() {
+          return _this2.handleRedirect('about');
+        }
+      }, "About"), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        color: "inherit",
+        onClick: function onClick() {
+          return _this2.handleRedirect('admin');
+        }
+      }, "Login"))), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_Dialog__WEBPACK_IMPORTED_MODULE_18__["default"], {
+        fullScreen: true,
+        open: this.state.modalOpen,
+        onClose: this.handleClose
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_AppBar__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        position: "absolute"
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_Toolbar__WEBPACK_IMPORTED_MODULE_14__["default"], null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_16__["default"], {
+        edge: "start",
+        color: "inherit",
+        onClick: this.handleClose,
+        "aria-label": "close"
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_icons_Close__WEBPACK_IMPORTED_MODULE_19___default.a, null)), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        variant: "h6"
+      }, "Introspection"))), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_DialogContent__WEBPACK_IMPORTED_MODULE_25__["default"], {
+        style: {
+          backgroundColor: "#a39eff"
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_DialogActions__WEBPACK_IMPORTED_MODULE_26__["default"], null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        color: "primary"
+      }, "Read"))), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
+        style: {
+          paddingTop: "50px"
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_Card__WEBPACK_IMPORTED_MODULE_20__["default"], null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_CardHeader__WEBPACK_IMPORTED_MODULE_21__["default"], {
+        title: this.state.post.title
+      }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_27__["default"], {
+        variant: "middle"
+      }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_CardMedia__WEBPACK_IMPORTED_MODULE_22__["default"], {
+        title: this.state.post.title
+      }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_CardContent__WEBPACK_IMPORTED_MODULE_23__["default"], null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        variant: "body2",
+        color: "textSecondary",
+        component: "p"
+      }, this.state.post.content)))));
+    }
+  }]);
+
+  return BlogPost;
+}(react__WEBPACK_IMPORTED_MODULE_9__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_28__["withRouter"])(BlogPost));
+
+/***/ }),
+
 /***/ "./src/components/home.js":
 /*!********************************!*\
   !*** ./src/components/home.js ***!
@@ -94808,8 +95090,6 @@ function (_Component) {
                 if (item.published == true) {
                   publishedPosts.push(item);
                 }
-
-                console.log(publishedPosts);
               });
 
               _this.setState({
@@ -94822,8 +95102,6 @@ function (_Component) {
               lPosts = publishedPosts.filter(function (post, index) {
                 return !(index % 2);
               });
-              console.log(rPosts);
-              console.log(lPosts);
 
               _this.setState({
                 leftPosts: lPosts
@@ -94833,10 +95111,7 @@ function (_Component) {
                 rightPosts: rPosts
               });
 
-              console.log(_this.state.rightPosts);
-              console.log(_this.state.leftPosts);
-
-            case 17:
+            case 13:
             case "end":
               return _context.stop();
           }
@@ -94970,7 +95245,10 @@ function (_Component) {
           }
         }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Card__WEBPACK_IMPORTED_MODULE_19__["default"], {
           variant: "outlined",
-          square: true
+          square: true,
+          onClick: function onClick() {
+            return _this2.handleRedirect('post/' + post.title + '/' + post.id);
+          }
         }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_CardHeader__WEBPACK_IMPORTED_MODULE_20__["default"], {
           title: post.title
         }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_26__["default"], {
@@ -94993,7 +95271,10 @@ function (_Component) {
           }
         }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Card__WEBPACK_IMPORTED_MODULE_19__["default"], {
           variant: "outlined",
-          square: true
+          square: true,
+          onClick: function onClick() {
+            return _this2.handleRedirect('post/' + post.title + '/' + post.id);
+          }
         }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_CardHeader__WEBPACK_IMPORTED_MODULE_20__["default"], {
           title: post.title
         }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_CardMedia__WEBPACK_IMPORTED_MODULE_21__["default"], {
@@ -95261,6 +95542,8 @@ function (_Component) {
             paddingTop: "20px",
             paddingBottom: "20px"
           }
+        }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(Link, {
+          to: "/blogpost1"
         }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Card__WEBPACK_IMPORTED_MODULE_20__["default"], {
           variant: "outlined",
           square: true
@@ -95274,7 +95557,7 @@ function (_Component) {
           variant: "body2",
           color: "textSecondary",
           component: "p"
-        }, post.content))));
+        }, post.content)))));
       })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_19__["default"], {
         item: true,
         xs: 6

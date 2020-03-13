@@ -18,12 +18,14 @@ import {Stack} from 'grommet';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import Divider from '@material-ui/core/Divider';
-
- class Home extends Component {
+import {
+  withRouter
+} from 'react-router-dom'
+ class BlogPost extends Component {
    constructor(props) {
        super(props);
        this.state = { 
-         posts: [], 
+         post: {}, 
          modalOpen: false,
          leftPosts: [],
          rightPosts: []
@@ -31,7 +33,25 @@ import Divider from '@material-ui/core/Divider';
    }
 
    componentDidMount() {
-    this.getPosts();
+    this.getPost();
+    console.log(this.props.match.params.id);
+    console.log(this.state.post)
+    console.log( typeof this.props.match.params)
+    console.log(this.state.leftPosts)
+}
+
+getPost = async () => {
+  const response = await fetch('/blogposts');
+  const posts = await response.json();
+  posts.forEach(item => 
+    {
+        if(item.id == this.props.match.params.id){
+        console.log("found post")
+        console.log(item);
+        console.log(typeof item)
+        this.setState({post : item});
+    }
+});
 }
 
 getPosts = async () => {
@@ -99,74 +119,27 @@ handleRedirect = (url) => {
           </Button>
         </DialogActions>
       </Dialog>
-      
-      <Stack anchor='center'>
-      <Image fit='cover' fill='true' src={LandingImage} />
-        <p style={{color: "white", paddingBottom: "400px"}}>
-          <span style={{fontSize: "100px"}}>Introspection<br/></span>
-          <span style={{fontSize: "20px"}}>noun<br/></span>
-          <span style={{fontSize: "25px"}}>The examination or observation of one's own mental and emotional processes.</span>
-          </p>
-    </Stack>  
-               {
-               (this.state.leftPosts.length > 0) || (this.state.rightPosts.length > 0) ? (
-                      <div style={{backgroundColor: "black"}}>
-                        <Grid container spacing={3}>
-                        <Grid item xs={6}>
-                       { 
-                       this.state.leftPosts.map(post =>
-                        <div style={{paddingTop: "20px", paddingBottom: "20px"}}>
-                        <Card variant="outlined" square onClick={() => this.handleRedirect('post/' + post.title + '/' + post.id)}>
-                        <CardHeader
-                          title={post.title}
+      <div style={{paddingTop: "50px"}}>
+      <Card>
+      <CardHeader
+                          title={this.state.post.title}
                         />
                         <Divider variant="middle"/>
                         <CardMedia
-                          title={post.title}
+                          title={this.state.post.title}
                         />
                         <CardContent>
                           <Typography variant="body2" color="textSecondary" component="p">
-                            {post.content}
+                            {this.state.post.content}
                           </Typography>
                         </CardContent>
-                      </Card>
-                      </div>
-                      )}
-                      </Grid>
-                    
-                      <Grid item xs={6}>
-                      { this.state.rightPosts.map(post =>
-                      <div style={{paddingTop: "20px", paddingBottom: "20px"}}>
-                        <Card variant="outlined" square onClick={() => this.handleRedirect('post/' + post.title + '/' + post.id)}>
-                        <CardHeader
-                          title={post.title}
-                        />
-                        <CardMedia
-                          title={post.title}
-                        />
-                        <Divider variant="middle"/>
-                        <CardContent>
-                          <Typography variant="body2" color="textSecondary" component="p">
-                            {post.content}
-                          </Typography>
-                        </CardContent>
-                      </Card>
-                      </div>
-                        )}
-                      </Grid>
-                      </Grid>
-                      </div>
-                           
-                   ) : (
-                           <div className="card mt-5 col-sm">
-                               <div className="card-body">No posts available!</div>
-                           </div>
-                       )
-               }
+                        </Card>
+           </div>
+
            </div>
            
        );
    }
 }
 
-export default Home;
+export default withRouter(BlogPost);
