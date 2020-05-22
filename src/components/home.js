@@ -121,13 +121,7 @@ handleRedirect = (url) => {
                           title={post.title}
                         />
                         <Divider variant="middle"/>
-                        <CardMedia
-                          title={post.title}
-                        />
                         <CardContent>
-                          <Typography variant="body2" color="textSecondary" component="p">
-                            {post.content}
-                          </Typography>
                         </CardContent>
                       </Card>
                       </div>
@@ -141,14 +135,8 @@ handleRedirect = (url) => {
                         <CardHeader
                           title={post.title}
                         />
-                        <CardMedia
-                          title={post.title}
-                        />
                         <Divider variant="middle"/>
                         <CardContent>
-                          <Typography variant="body2" color="textSecondary" component="p">
-                            {post.content}
-                          </Typography>
                         </CardContent>
                       </Card>
                       </div>
