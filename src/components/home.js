@@ -13,7 +13,7 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import LandingImage from './stars.jpg'
+import LandingImage from './landing.jpg'
 import {Stack} from 'grommet';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -69,14 +69,13 @@ handleRedirect = (url) => {
            <div>
       <AppBar position="absolute" style={{ background: 'transparent', boxShadow: 'none'}}>
         <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu" onClick={this.handleClickOpen}>
+          <IconButton edge="start" color="black" aria-label="menu" onClick={this.handleClickOpen}>
             <MenuIcon>
             </MenuIcon>
           </IconButton>
-          <Button color="inherit" onClick={() => this.handleRedirect('')}>Home</Button>
-          <Button color="inherit" onClick={() => this.handleRedirect('posts')}>Read</Button>
-          <Button color="inherit" onClick={() => this.handleRedirect('about')}>About</Button>
-          <Button color="inherit" onClick={() => this.handleRedirect('admin')}>Login</Button>
+          <Button color="black" onClick={() => this.handleRedirect('')}>Home</Button>
+          <Button color="black" onClick={() => this.handleRedirect('about')}>About</Button>
+          <Button color="black" onClick={() => this.handleRedirect('admin')}>Login</Button>
         </Toolbar>
       </AppBar>
 
@@ -87,25 +86,19 @@ handleRedirect = (url) => {
               <CloseIcon />
             </IconButton>
             <Typography variant="h6">
-              Introspection
+              Running Mindset
             </Typography>
           </Toolbar>
         </AppBar>
-      <DialogContent style={{backgroundColor: "#a39eff"}}>
+      <DialogContent style={{backgroundColor: "#fffff"}}>
       </DialogContent>
-      <DialogActions>
-          <Button color="primary">
-            Read
-          </Button>
-        </DialogActions>
       </Dialog>
       
       <Stack anchor='center'>
       <Image fit='cover' fill='true' src={LandingImage} />
         <p style={{color: "white", paddingBottom: "400px"}}>
-          <span style={{fontSize: "100px"}}>Introspection<br/></span>
-          <span style={{fontSize: "20px"}}>noun<br/></span>
-          <span style={{fontSize: "25px"}}>The examination or observation of one's own mental and emotional processes.</span>
+          <span style={{fontSize: "80px"}}>Running Mindset<br/></span>
+          <span style={{fontSize: "25px"}}>A blog about how to start running to stay healthy and be happier.</span>
           </p>
     </Stack>  
                {

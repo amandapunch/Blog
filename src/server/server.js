@@ -68,6 +68,10 @@ app.get('/', (req, res) => {
   res.redirect('/home');
 });
 
+app.get('/posts', (req, res) => {
+    res.redirect('/posts');
+  });
+
 app.get('/about', (req, res) => {
     res.redirect('/about');
   });

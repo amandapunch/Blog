@@ -75,7 +75,6 @@ class Posts extends Component {
                   </MenuIcon>
                 </IconButton>
                 <Button color="inherit" onClick={() => this.handleRedirect('')}>Home</Button>
-                <Button color="inherit" onClick={() => this.handleRedirect('posts')}>Read</Button>
                 <Button color="inherit" onClick={() => this.handleRedirect('about')}>About</Button>
                 <Button color="inherit" onClick={() => this.handleRedirect('admin')}>Login</Button>
               </Toolbar>
@@ -94,11 +93,6 @@ class Posts extends Component {
               </AppBar>
             <DialogContent style={{backgroundColor: "#a39eff"}}>
             </DialogContent>
-            <DialogActions>
-                <Button color="primary">
-                  Read
-                </Button>
-              </DialogActions>
             </Dialog>
             {
                (this.state.leftPosts.length > 0) || (this.state.rightPosts.length > 0) ? (

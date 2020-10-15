@@ -93994,11 +93994,6 @@ function (_Component) {
       }, "Home"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
         color: "inherit",
         onClick: function onClick() {
-          return _this2.handleRedirect('posts');
-        }
-      }, "Read"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
-        color: "inherit",
-        onClick: function onClick() {
           return _this2.handleRedirect('about');
         }
       }, "About"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -94023,9 +94018,7 @@ function (_Component) {
         style: {
           backgroundColor: "#a39eff"
         }
-      }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_material_ui_core_DialogActions__WEBPACK_IMPORTED_MODULE_17__["default"], null, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
-        color: "primary"
-      }, "Read"))));
+      }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_material_ui_core_DialogActions__WEBPACK_IMPORTED_MODULE_17__["default"], null)));
     }
   }]);
 
@@ -94733,12 +94726,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_CardHeader__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @material-ui/core/CardHeader */ "./node_modules/@material-ui/core/esm/CardHeader/index.js");
 /* harmony import */ var _material_ui_core_CardMedia__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @material-ui/core/CardMedia */ "./node_modules/@material-ui/core/esm/CardMedia/index.js");
 /* harmony import */ var _material_ui_core_CardContent__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js");
-/* harmony import */ var _stars_jpg__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./stars.jpg */ "./src/components/stars.jpg");
-/* harmony import */ var _material_ui_core_DialogContent__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @material-ui/core/DialogContent */ "./node_modules/@material-ui/core/esm/DialogContent/index.js");
-/* harmony import */ var _material_ui_core_DialogActions__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @material-ui/core/DialogActions */ "./node_modules/@material-ui/core/esm/DialogActions/index.js");
-/* harmony import */ var _material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @material-ui/core/Divider */ "./node_modules/@material-ui/core/esm/Divider/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-
+/* harmony import */ var _material_ui_core_DialogContent__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @material-ui/core/DialogContent */ "./node_modules/@material-ui/core/esm/DialogContent/index.js");
+/* harmony import */ var _material_ui_core_DialogActions__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @material-ui/core/DialogActions */ "./node_modules/@material-ui/core/esm/DialogActions/index.js");
+/* harmony import */ var _material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @material-ui/core/Divider */ "./node_modules/@material-ui/core/esm/Divider/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 
 
@@ -94950,11 +94941,11 @@ function (_Component) {
         "aria-label": "close"
       }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_icons_Close__WEBPACK_IMPORTED_MODULE_19___default.a, null)), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_15__["default"], {
         variant: "h6"
-      }, "Introspection"))), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_DialogContent__WEBPACK_IMPORTED_MODULE_25__["default"], {
+      }, "Introspection"))), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_DialogContent__WEBPACK_IMPORTED_MODULE_24__["default"], {
         style: {
           backgroundColor: "#a39eff"
         }
-      }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_DialogActions__WEBPACK_IMPORTED_MODULE_26__["default"], null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_DialogActions__WEBPACK_IMPORTED_MODULE_25__["default"], null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
         color: "primary"
       }, "Read"))), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
         style: {
@@ -94962,7 +94953,7 @@ function (_Component) {
         }
       }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_Card__WEBPACK_IMPORTED_MODULE_20__["default"], null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_CardHeader__WEBPACK_IMPORTED_MODULE_21__["default"], {
         title: this.state.post.title
-      }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_27__["default"], {
+      }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_26__["default"], {
         variant: "middle"
       }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_material_ui_core_CardMedia__WEBPACK_IMPORTED_MODULE_22__["default"], {
         title: this.state.post.title
@@ -94977,7 +94968,7 @@ function (_Component) {
   return BlogPost;
 }(react__WEBPACK_IMPORTED_MODULE_9__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_28__["withRouter"])(BlogPost));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_27__["withRouter"])(BlogPost));
 
 /***/ }),
 
@@ -95024,7 +95015,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_CardHeader__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @material-ui/core/CardHeader */ "./node_modules/@material-ui/core/esm/CardHeader/index.js");
 /* harmony import */ var _material_ui_core_CardMedia__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @material-ui/core/CardMedia */ "./node_modules/@material-ui/core/esm/CardMedia/index.js");
 /* harmony import */ var _material_ui_core_CardContent__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js");
-/* harmony import */ var _stars_jpg__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./stars.jpg */ "./src/components/stars.jpg");
+/* harmony import */ var _landing_jpg__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./landing.jpg */ "./src/components/landing.jpg");
 /* harmony import */ var _material_ui_core_DialogContent__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @material-ui/core/DialogContent */ "./node_modules/@material-ui/core/esm/DialogContent/index.js");
 /* harmony import */ var _material_ui_core_DialogActions__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @material-ui/core/DialogActions */ "./node_modules/@material-ui/core/esm/DialogActions/index.js");
 /* harmony import */ var _material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @material-ui/core/Divider */ "./node_modules/@material-ui/core/esm/Divider/index.js");
@@ -95162,26 +95153,21 @@ function (_Component) {
         }
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Toolbar__WEBPACK_IMPORTED_MODULE_13__["default"], null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_15__["default"], {
         edge: "start",
-        color: "inherit",
+        color: "black",
         "aria-label": "menu",
         onClick: this.handleClickOpen
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_16___default.a, null)), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        color: "inherit",
+        color: "black",
         onClick: function onClick() {
           return _this2.handleRedirect('');
         }
       }, "Home"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        color: "inherit",
-        onClick: function onClick() {
-          return _this2.handleRedirect('posts');
-        }
-      }, "Read"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        color: "inherit",
+        color: "black",
         onClick: function onClick() {
           return _this2.handleRedirect('about');
         }
       }, "About"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        color: "inherit",
+        color: "black",
         onClick: function onClick() {
           return _this2.handleRedirect('admin');
         }
@@ -95198,18 +95184,16 @@ function (_Component) {
         "aria-label": "close"
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_icons_Close__WEBPACK_IMPORTED_MODULE_18___default.a, null)), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_14__["default"], {
         variant: "h6"
-      }, "Introspection"))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_DialogContent__WEBPACK_IMPORTED_MODULE_24__["default"], {
+      }, "Running Mindset"))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_DialogContent__WEBPACK_IMPORTED_MODULE_24__["default"], {
         style: {
-          backgroundColor: "#a39eff"
+          backgroundColor: "#fffff"
         }
-      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_DialogActions__WEBPACK_IMPORTED_MODULE_25__["default"], null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        color: "primary"
-      }, "Read"))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(grommet__WEBPACK_IMPORTED_MODULE_11__["Stack"], {
+      })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(grommet__WEBPACK_IMPORTED_MODULE_11__["Stack"], {
         anchor: "center"
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(grommet__WEBPACK_IMPORTED_MODULE_11__["Image"], {
         fit: "cover",
         fill: "true",
-        src: _stars_jpg__WEBPACK_IMPORTED_MODULE_23__["default"]
+        src: _landing_jpg__WEBPACK_IMPORTED_MODULE_23__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("p", {
         style: {
           color: "white",
@@ -95217,17 +95201,13 @@ function (_Component) {
         }
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
         style: {
-          fontSize: "100px"
+          fontSize: "80px"
         }
-      }, "Introspection", react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
-        style: {
-          fontSize: "20px"
-        }
-      }, "noun", react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
+      }, "Running Mindset", react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
         style: {
           fontSize: "25px"
         }
-      }, "The examination or observation of one's own mental and emotional processes."))), this.state.leftPosts.length > 0 || this.state.rightPosts.length > 0 ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+      }, "A blog about how to start running to stay healthy and be happier."))), this.state.leftPosts.length > 0 || this.state.rightPosts.length > 0 ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         style: {
           backgroundColor: "black"
         }
@@ -95253,13 +95233,7 @@ function (_Component) {
           title: post.title
         }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_26__["default"], {
           variant: "middle"
-        }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_CardMedia__WEBPACK_IMPORTED_MODULE_21__["default"], {
-          title: post.title
-        }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_CardContent__WEBPACK_IMPORTED_MODULE_22__["default"], null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_14__["default"], {
-          variant: "body2",
-          color: "textSecondary",
-          component: "p"
-        }, post.content))));
+        }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_CardContent__WEBPACK_IMPORTED_MODULE_22__["default"], null)));
       })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_10__["default"], {
         item: true,
         xs: 6
@@ -95277,15 +95251,9 @@ function (_Component) {
           }
         }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_CardHeader__WEBPACK_IMPORTED_MODULE_20__["default"], {
           title: post.title
-        }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_CardMedia__WEBPACK_IMPORTED_MODULE_21__["default"], {
-          title: post.title
         }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_26__["default"], {
           variant: "middle"
-        }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_CardContent__WEBPACK_IMPORTED_MODULE_22__["default"], null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_14__["default"], {
-          variant: "body2",
-          color: "textSecondary",
-          component: "p"
-        }, post.content))));
+        }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_CardContent__WEBPACK_IMPORTED_MODULE_22__["default"], null)));
       })))) : react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "card mt-5 col-sm"
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
@@ -95298,6 +95266,19 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_8__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Home);
+
+/***/ }),
+
+/***/ "./src/components/landing.jpg":
+/*!************************************!*\
+  !*** ./src/components/landing.jpg ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "414db98873ddd3c23f8c61a4a5f2f20f.jpg");
 
 /***/ }),
 
@@ -95492,11 +95473,6 @@ function (_Component) {
       }, "Home"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
         color: "inherit",
         onClick: function onClick() {
-          return _this2.handleRedirect('posts');
-        }
-      }, "Read"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        color: "inherit",
-        onClick: function onClick() {
           return _this2.handleRedirect('about');
         }
       }, "About"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
@@ -95521,9 +95497,7 @@ function (_Component) {
         style: {
           backgroundColor: "#a39eff"
         }
-      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_DialogActions__WEBPACK_IMPORTED_MODULE_18__["default"], null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        color: "primary"
-      }, "Read"))), this.state.leftPosts.length > 0 || this.state.rightPosts.length > 0 ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+      })), this.state.leftPosts.length > 0 || this.state.rightPosts.length > 0 ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         style: {
           backgroundColor: "black"
         }
@@ -95593,19 +95567,6 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_8__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Posts);
-
-/***/ }),
-
-/***/ "./src/components/stars.jpg":
-/*!**********************************!*\
-  !*** ./src/components/stars.jpg ***!
-  \**********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "5d6e948e3b3f7b24acb24341768abce0.jpg");
 
 /***/ }),
 
