@@ -6,5 +6,5 @@ sudo npm install
 sudo npm run build
 sudo npm start
 
-Go to your brwoser of choice and access http://localhost:3000 to view the site. 
+Go to your browser of choice and access http://localhost:3000 to view the site. 
 
